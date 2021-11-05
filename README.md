@@ -7,10 +7,10 @@ This is a repo for Bounteous's 2021 Fall Hackthon. Our project is a data science
    * [Data Analysis Web App Template](https://towardsdatascience.com/how-to-build-a-data-analysis-app-in-r-shiny-143bee9338f7)
    * [Web App with Pages](https://ericrayanderson.shinyapps.io/shinymaterial_dashboard/)
 2. Readings
-   * https://google.github.io/CausalImpact/CausalImpact.html
-   * https://otexts.com/fpp2/forecasting-decomposition.html
-   * https://github.com/business-science/anomalize
-   * https://medium.com/@rumman1988/clustering-categorical-and-numerical-datatype-using-gower-distance-ab89b3aa90d9
+   * [CausalImpact]https://google.github.io/CausalImpact/CausalImpact.html
+   * [Forecasting]https://otexts.com/fpp2/forecasting-decomposition.html
+   * [Anomaly Detection]https://github.com/business-science/anomalize
+   * [Clustering]https://medium.com/@rumman1988/clustering-categorical-and-numerical-datatype-using-gower-distance-ab89b3aa90d9
 ### Directory
 1. Resources
    * TimeSeriesForcasting: A R Shiny Web APP for time series forecasting
