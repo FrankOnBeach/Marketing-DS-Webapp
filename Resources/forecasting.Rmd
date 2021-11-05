@@ -1,0 +1,50 @@
+
+```{r}
+library(forecast)
+library(dplyr)
+library(anytime)
+library(ggplot2)
+```
+
+```{r}
+cokestore_revenue = read.csv("C:/Work/Coke/Forecasting/Coke Store Historical 2019-01-01 to 2021-09-29.csv")
+```
+
+```{r}
+cokestore_revenue$ï..Date <- anytime(cokestore_revenue$ï..Date)
+```
+
+```{r}
+cokestore_revenue$ï..Date[1]
+```
+
+
+```{r}
+coke_revenue_ts <- ts(cokestore_revenue$LM,start=c(2019,as.numeric(format(cokestore_revenue$ï..Date[1], "%j"))),frequency=365)
+```
+
+
+```{r}
+fit <- stl(coke_revenue_ts, t.window=13, s.window="periodic",
+  robust=TRUE)
+```
+
+```{r}
+period = 100
+result <- forecast(fit,method="arima",h=period) 
+```
+
+
+```{r}
+result%>%autoplot()
+```
+```{r}
+start_date=max(as.Date(cokestore_revenue$ï..DATE), na.rm = TRUE) + 1
+forecasted_date = seq(start_date,by = "day",length.out = period)
+```
+
+
+```{r}
+write.csv(result,"C:/Work/Coke/Forecasting/LM_Forecasting 9-30 to 1-7.csv")
+```
+

@@ -1,0 +1,12 @@
+name: TimeSeriesForecasting
+title: TimeSeriesForecasting
+username:
+account: hz-analytics
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 3452768
+bundleId: 4177893
+url: https://hz-analytics.shinyapps.io/TimeSeriesForecasting/
+when: 1612391782.2188
+asMultiple: FALSE
+asStatic: FALSE
