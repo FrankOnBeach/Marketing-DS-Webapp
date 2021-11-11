@@ -1,12 +1,13 @@
 # Marketing-DS-Webapp
 ### Description
 This is a repo for Bounteous's 2021 Fall Hackthon. Our project is a data science web app tailored to marketing built in R Shiny. 
-### Examples and Readings
+### Examples and Resources
 1. Examples
    * [R Shiny Advanced Tricks](https://github.com/daattali/advanced-shiny)
    * [Data Analysis Web App Template](https://towardsdatascience.com/how-to-build-a-data-analysis-app-in-r-shiny-143bee9338f7)
    * [Web App with Pages](https://ericrayanderson.shinyapps.io/shinymaterial_dashboard/)
-2. Readings
+2. Resources
+   * [ShinyTheme](https://rstudio.github.io/shinythemes/)
    * [CausalImpact](https://google.github.io/CausalImpact/CausalImpact.html)
    * [Forecasting](https://otexts.com/fpp2/forecasting-decomposition.html)
    * [Anomaly Detection](https://github.com/business-science/anomalize)
