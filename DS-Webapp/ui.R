@@ -16,10 +16,10 @@ about_page <- tabPanel(
     title = "About",
     titlePanel("About"),
     "This is an R shiny app for our Hackathon Project at Bounteous By Manasa Chitiprolu,Neha Khatr,Rebecca Manson, Frank Xu",
-    h1("Time Series Decomposition and Forecasting"),
-    h1("Causal Impact"),
-    h1("Anomaly Detection"),
-    h1("Clustering (K-Means)"),
+    h3("Time Series Decomposition and Forecasting"),
+    h3("Causal Impact"),
+    h3("Anomaly Detection"),
+    h3("Clustering (K-Means)"),
     br()
     # TODO Low-Add a suggestion box here ####
     # TODO Paste description for each model ####
@@ -268,7 +268,7 @@ clustering_page <- tabPanel(
 )
 
 ui <- navbarPage(
-    title = "Bounteous Marketing Data Science App",
+    title = "Data Science Play Ground",
     theme = shinytheme('flatly'),
     about_page,
     time_series_forecasting_page,
