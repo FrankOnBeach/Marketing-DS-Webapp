@@ -27,7 +27,19 @@ shinyUI(fluidPage(
       
       textInput("date_field_ad", "Write down the column name of date field", "Date"),
       textInput("value_field_ad", "Write down the column name of value field. If col name has space, replace the space with period(e.g. XX XX -> XX.XX)", "Sessions"),
-      textInput("max_anoms_ad", "Write down the max % of anomalies you would like to see. For example, 20% would be 0.2", "0.08"),
+      
+      sliderInput("alpha",
+                  "Choose how sensitive you want the anomaly detection to be.The higher the value is the more sensitive it is",
+                  min = 0.02,
+                  max = 0.15,
+                  value = 0.05),
+      
+      sliderInput("max_anoms_ad",
+                  "Choose the max % of anomalies you would like to see. For example, 20% would be 0.2",
+                  min = 0.01,
+                  max = 0.3,
+                  value = 0.05),
+      # textInput("max_anoms_ad", "Write down the max % of anomalies you would like to see. For example, 20% would be 0.2", "0.08"),
       #textInput("frequency_ad", "Write down the frequency you would like to use. For example, 2 days", "365"),
       
       # Input: Select Data's Date Format ----
@@ -38,8 +50,9 @@ shinyUI(fluidPage(
                                "yyyy-mm-dd" = "yyyy-mm-dd"),
                    selected = "mm/dd/yy"),
       
-    
-      actionButton("submit_ad", "Run analysis")
+      
+      actionButton("submit_ad", "Run analysis"),
+      downloadButton("downloadData_ad", "Download")
     ),
     
     

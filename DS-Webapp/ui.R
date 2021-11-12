@@ -15,7 +15,11 @@ not_sel <- "Not Selected"
 about_page <- tabPanel(
     title = "About",
     titlePanel("About"),
-    "This is an R shiny app for our Hackathon Project at Bounteous.",
+    "This is an R shiny app for our Hackathon Project at Bounteous By Manasa Chitiprolu,Neha Khatr,Rebecca Manson, Frank Xu",
+    h1("Time Series Decomposition and Forecasting"),
+    h1("Causal Impact"),
+    h1("Anomaly Detection"),
+    h1("Clustering (K-Means)"),
     br()
     # TODO Low-Add a suggestion box here ####
     # TODO Paste description for each model ####
@@ -36,34 +40,11 @@ time_series_forecasting_page <- tabPanel(
                       accept = c("text/csv",
                                  "text/comma-separated-values,text/plain",
                                  ".csv")),
-            checkboxInput("header_forecasting", "Header", TRUE),
-            
-            # Input: Select separator ----
-            radioButtons("sep_forecasting", "Separator",
-                         choices = c(Comma = ",",
-                                     Semicolon = ";",
-                                     Tab = "\t"),
-                         selected = ","),
-            
-            # Input: Select quotes ----
-            radioButtons("quote_forecasting", "Quote",
-                         choices = c(None = "",
-                                     "Double Quote" = '"',
-                                     "Single Quote" = "'"),
-                         selected = '"'),
             # selectInput("date_field_forecasting", "Choose the column name of date field", choices = c(not_sel)),
             # selectInput("value_field_forecasting", "Choose the column name of value field", choices = c(not_sel)),
             textInput("date_field_forecasting", "Write down the column name of date field", "Date"),
             textInput("value_field_forecasting", "Write down the column name of value field. If col name has space, replace the space with period(e.g. XX XX -> XX.XX)", "Sessions"),
             
-            
-            # Input: Select Data's Date Format ----
-            radioButtons("date_format_forecasting", "Select Data's Date Format",
-                         choices = c("Not a date column"= "not_date",
-                                     "mm/dd/yy" = "mm/dd/yy",
-                                     "mm/dd/yyyy" = "mm/dd/yyyy",
-                                     "yyyy-mm-dd" = "yyyy-mm-dd"),
-                         selected = "mm/dd/yy"),
             
             # Input: Select Data Format ----
             radioButtons("frequency_forecasting", "Select Data's Frequency: daily or weekly or monthly?",
@@ -79,11 +60,9 @@ time_series_forecasting_page <- tabPanel(
          
             radioButtons("method_forecasting", "Select Time Series Method",
                          choices = c("Time Series Decomposition (STL)" = "STL",
-                                     "ARIMA(No Seasonality)" = "ARIMA1",
-                                     "ARIMA(With Seasonality)" = "ARIMA2",
-                                     "STL and ARIMA" = "STL+ARIMA"
+                                     "Forecasting(STL and ARIMA)" = "STL+ARIMA"
                          ),
-                         selected = "ARIMA"),
+                         selected = "STL"),
             
             sliderInput("period_forecasting",
                         "If forecast method is chosen please put a forecast period",
@@ -137,21 +116,6 @@ causal_impact_page <- tabPanel(
                       accept = c("text/csv",
                                  "text/comma-separated-values,text/plain",
                                  ".csv")),
-            checkboxInput("header_ci", "Header", TRUE),
-            
-            # Input: Select separator ----
-            radioButtons("sep_ci", "Separator",
-                         choices = c(Comma = ",",
-                                     Semicolon = ";",
-                                     Tab = "\t"),
-                         selected = ","),
-            
-            # Input: Select quotes ----
-            radioButtons("quote_ci", "Quote",
-                         choices = c(None = "",
-                                     "Double Quote" = '"',
-                                     "Single Quote" = "'"),
-                         selected = '"'),
             # selectInput("date_field_forecasting", "Choose the column name of date field", choices = c(not_sel)),
             # selectInput("value_field_forecasting", "Choose the column name of value field", choices = c(not_sel)),
             textInput("impact_field_ci", "Write down the column name of you want to run causal impact on", "2021"),
@@ -183,10 +147,132 @@ causal_impact_page <- tabPanel(
     )
 )
 
+anomaly_detection_page <- tabPanel(
+    title = "Anomaly Detection",
+
+    # Application title
+    titlePanel("Anomaly Detection"),
+    
+    # Sidebar with a slider input for number of bins
+    sidebarLayout(
+        sidebarPanel(
+            fileInput("file_ad", "Choose CSV File",
+                      multiple = TRUE,
+                      accept = c("text/csv",
+                                 "text/comma-separated-values,text/plain",
+                                 ".csv")),
+            
+            textInput("date_field_ad", "Write down the column name of date field", "Date"),
+            textInput("value_field_ad", "Write down the column name of value field. If col name has space, replace the space with period(e.g. XX XX -> XX.XX)", "Sessions"),
+            
+            sliderInput("alpha",
+                        "Choose how sensitive you want the anomaly detection to be.The higher the value is the more sensitive it is",
+                        min = 0.02,
+                        max = 0.15,
+                        value = 0.05),
+            
+            sliderInput("max_anoms_ad",
+                        "Choose the max % of anomalies you would like to see. For example, 20% would be 0.2",
+                        min = 0.01,
+                        max = 0.3,
+                        value = 0.05),
+            # textInput("max_anoms_ad", "Write down the max % of anomalies you would like to see. For example, 20% would be 0.2", "0.08"),
+            #textInput("frequency_ad", "Write down the frequency you would like to use. For example, 2 days", "365"),
+            
+            # Input: Select Data's Date Format ----
+            radioButtons("date_format_ad", "Select Data's Date Format",
+                         choices = c("Not a date column"= "not_date",
+                                     "mm/dd/yy" = "mm/dd/yy",
+                                     "mm/dd/yyyy" = "mm/dd/yyyy",
+                                     "yyyy-mm-dd" = "yyyy-mm-dd"),
+                         selected = "mm/dd/yy"),
+            
+            
+            actionButton("submit_ad", "Run analysis"),
+            downloadButton("downloadData_ad", "Download")
+        ),
+        
+        
+        # Show a plot of the generated distribution
+        mainPanel(
+            plotOutput(outputId = "main_plot_ad",  width = "100%"),
+            br(),
+            br(),
+            br(),
+            br(),
+            br(),
+            br(),
+            br(),
+            br(),
+            br(),
+            br(),
+            br(),
+            br(),
+            htmlOutput("title_ad"),
+            tableOutput("Anomaly Chart"),
+            br(),
+            br(),
+            dataTableOutput(outputId = "main_table_ad"),
+        )
+    )    
+
+)
+
+clustering_page <- tabPanel(
+    title = "Clustering",
+    # Application title
+    titlePanel("Clustering"),
+    
+    # Sidebar with a slider input for number of bins
+    sidebarLayout(
+        sidebarPanel(
+            fileInput("file1_cl", "Choose CSV File, file must only contain your data IDs, all other metrics for the cluster must be numeric",
+                      multiple = TRUE,
+                      accept = c("text/csv",
+                                 "text/comma-separated-values,text/plain",
+                                 ".csv")),
+
+            
+            #textInput("k_means_model_description", "Write down the column name of date field", "DATE"),
+            #textInput("cluster_count", "Write down the column name of value field. If col name has space, replace the space with period(e.g. XX XX -> XX.XX)", "Sessions"),
+            
+            
+            # Input: Select Data's Date Format ----
+            radioButtons("cluster_number", "Select your number of clusters, from the first chart, where the series turns",
+                         choices = c("3"= 3,
+                                     "4" = 4,
+                                     "5" = 5
+                         ),
+                         selected = "3"),
+            
+            actionButton("submit_cl", "Run analysis"),
+            downloadButton("downloadData_cl", "Download")
+        ),
+        
+        
+        # Show a plot of the generated distribution
+        mainPanel(
+            htmlOutput("title_elbow_plot"),
+            plotOutput(outputId = "elbow_plot",  width = "80%"),
+            br(),
+            htmlOutput("title_sample_output"),
+            dataTableOutput(outputId = "sample_output"),
+            br(),
+            br(),
+            htmlOutput("title_plot_cl"),
+            plotOutput(outputId = "plot_cl",  width = "80%"),
+            br(),
+            br()
+        )
+    )
+)
+
 ui <- navbarPage(
     title = "Bounteous Marketing Data Science App",
     theme = shinytheme('flatly'),
     about_page,
     time_series_forecasting_page,
-    causal_impact_page
+    causal_impact_page,
+    anomaly_detection_page,
+    clustering_page
 )
