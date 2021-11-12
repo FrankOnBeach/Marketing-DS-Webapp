@@ -310,6 +310,8 @@ shinyServer(function(input, output) {
     ci_df <- zoo(ci_df)
     ci_result = run_causal_impact(ci_df,impact_point)
     ci_plot <-plot(ci_result)
+    print(summary(ci_result))
+    
     list(ci_plot = ci_plot,ci_result = ci_result$report)
   })
   
