@@ -1,6 +1,7 @@
 # Marketing-DS-Webapp
 ### Description
 This is a repo for Bounteous's 2021 Fall Hackthon. Our project is a data science web app tailored to marketing built in R Shiny. 
+Final Product: https://bounteous-data-science-playground.shinyapps.io/Data-Science-Playground/
 ### Examples and Resources
 1. Examples
    * [R Shiny Advanced Tricks](https://github.com/daattali/advanced-shiny)
